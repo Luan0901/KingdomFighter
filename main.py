@@ -2,6 +2,7 @@ import pygame
 from fighter import Fighter
 pygame.init()
 
+# declare screen resolution
 SCREEN_WIDTH = 1000
 SCREEN_HEIGHT = 600
 
@@ -20,8 +21,7 @@ WIZARD_SCALE = 3
 WIZARD_OFFSET = [112, 107]
 WIZARD_DATA = [WIZARD_SIZE, WIZARD_SCALE, WIZARD_OFFSET]
 
-
-
+# 
 screen = pygame.display.set_mode(( SCREEN_WIDTH, SCREEN_HEIGHT ))
 pygame.display.set_caption("Kingdom Fighter")
 
@@ -29,9 +29,8 @@ pygame.display.set_caption("Kingdom Fighter")
 clock = pygame.time.Clock()
 FPS = 60
 
-bg_image = pygame.image.load("assets/images/background/background.jpg").convert_alpha()
-
 # load background image
+bg_image = pygame.image.load("assets/images/background/background.jpg").convert_alpha()
 def draw_bg():
     scale_bg = pygame.transform.scale(bg_image,(SCREEN_WIDTH,SCREEN_HEIGHT))
     screen.blit(scale_bg, (0, 0))
@@ -70,6 +69,13 @@ while run:
     #move fighters
     fighter_1.move(SCREEN_WIDTH, SCREEN_HEIGHT, screen, fighter_2)
     # fighter_2.move(SCREEN_WIDTH, SCREEN_HEIGHT, screen, fighter_1)
+    
+    
+    # update fighter
+    fighter_1.update()
+    fighter_2.update()
+
+    
     
     fighter_1.draw(screen)
     fighter_2.draw(screen)
