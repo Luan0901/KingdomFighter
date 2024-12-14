@@ -21,7 +21,8 @@ class Fighter():
         self.attack_cooldown = 0
 
         self.hit = False
-        self.heath = 10
+        self.heath = 100
+        self.mana = 0
         self.alive = True
         
     def load_images(self, sprite_sheet, animation_steps):
@@ -75,6 +76,11 @@ class Fighter():
                         self.attack_type = 1
                     if key[pygame.K_k]:
                         self.attack_type = 2
+                        
+                if key[pygame.K_l] and self.mana == 100:
+                    self.special_attack(surface, target)
+                    self.attack_type = 3
+    
              # check player 2 control
             if self.player == 2:
                 # movement
@@ -98,7 +104,10 @@ class Fighter():
                         self.attack_type = 1
                     if key[pygame.K_KP2]:
                         self.attack_type = 2
-                    
+                        
+                if key[pygame.K_KP3] and self.mana == 100:
+                    self.special_attack(surface, target)
+                    self.attack_type = 3
             
         self.vel_y += GRAVITY
         dy += self.vel_y 
@@ -146,7 +155,9 @@ class Fighter():
             if self.attack_type == 1:
                 self.update_actions(3)
             elif self.attack_type == 2:
-                self.update_actions(4)   
+                self.update_actions(4) 
+            elif self.attack_type == 3:
+                self.update_actions(7)  
         elif self.jump == True:
             self.update_actions(2)
         elif self.running == True:
@@ -169,7 +180,7 @@ class Fighter():
             if self.alive == False:
                 self.frame_index = len(self.animation_list[self.action]) - 1
             #  check if an attack is execute
-            if self.action == 3 or self.action == 4:
+            if self.action == 3 or self.action == 4 or self.action == 7:
                 self.attacking = False
                 self.attack_cooldown = 20
             
@@ -185,14 +196,28 @@ class Fighter():
         if self.attack_cooldown == 0:
             self.attacking = True
             self.attack_sound.play()
-            attacking_rect = pygame.Rect( self.rect.centerx - (2 * self.rect.width * self.flip), 
-                                         self.rect.y, 2 * self.rect.width, self.rect.height)
+            attacking_rect = pygame.Rect( self.rect.centerx - (2 * self.rect.width * self.flip), self.rect.y, 2 * self.rect.width, self.rect.height)
             if attacking_rect.colliderect(target.rect) :
+                if self.mana >= 100:
+                    self.mana = 100
+                else: 
+                    self.mana += 20
                 target.hit = True
                 target.heath -= 10
 
             # pygame.draw.rect(surface, (0, 255, 0), attacking_rect)
         
+    def special_attack(self, surface, target):
+        if self.attack_cooldown == 0:
+            self.attacking = True
+            self.attack_sound.play()
+            attacking_rect = pygame.Rect( self.rect.centerx - (3 * self.rect.width * self.flip),
+                                         self.rect.y, 3 * self.rect.width, self.rect.height)
+            if attacking_rect.colliderect(target.rect) :
+                self.mana = 0
+                target.hit = True
+                target.heath -= 50
+            
         
     def update_actions(self, new_action):
         # check if the new action is different to the previous one
