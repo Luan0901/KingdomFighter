@@ -19,7 +19,6 @@ class Fighter():
         self.attacking = False
         self.attack_type = 0
         self.attack_cooldown = 0
-
         self.hit = False
         self.heath = 100
         self.mana = 0
@@ -176,7 +175,7 @@ class Fighter():
             
         if self.frame_index >= len(self.animation_list[self.action]):
             self.frame_index = 0
-            #  check if the player is death, then end the stay at the last frame of the death animation
+            #  check if the player is death, then end and stay at the last frame of the death animation
             if self.alive == False:
                 self.frame_index = len(self.animation_list[self.action]) - 1
             #  check if an attack is execute
@@ -211,12 +210,11 @@ class Fighter():
         if self.attack_cooldown == 0:
             self.attacking = True
             self.attack_sound.play()
-            attacking_rect = pygame.Rect( self.rect.centerx - (3 * self.rect.width * self.flip),
-                                         self.rect.y, 3 * self.rect.width, self.rect.height)
+            attacking_rect = pygame.Rect( self.rect.centerx - (3 * self.rect.width * self.flip), self.rect.y, 3 * self.rect.width, self.rect.height)
             if attacking_rect.colliderect(target.rect) :
                 self.mana = 0
                 target.hit = True
-                target.heath -= 50
+                target.heath -= 20
             
         
     def update_actions(self, new_action):

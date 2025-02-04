@@ -56,7 +56,7 @@ KNIGHT_OFFSET = [78, 62.7]
 KNIGHT_DATA = [KNIGHT_SIZE, KNIGHT_SCALE, KNIGHT_OFFSET]
 
 # define number of steps each character
-WARRIOR_ANIMATION_STEPS = [10, 8 ,1 , 7, 7, 3, 7, 8]
+WARRIOR_ANIMATION_STEPS = [10, 8 ,3 , 7, 7, 3, 7, 8]
 WIZARD_ANIMATION_STEPS = [8, 8 ,1 , 8, 8, 3, 7, 16]
 MARTIALHERO_ANIMATION_STEPS = [8, 8, 2, 6, 6, 4, 6, 12]
 KNIGHT_ANIMATION_STEPS = [11, 8, 3, 7, 7, 4, 11, 14]  
@@ -137,6 +137,7 @@ def draw_heath_bar(heath, x, y):
     pygame.draw.rect(screen, WHITE, (x - 2, y - 2, 404, 24) )
     pygame.draw.rect(screen, RED, (x, y, 400, 20))
     pygame.draw.rect(screen, YELLOW, (x, y, 400 * ratio, 20))
+    
 def draw_mana_bar(mana, x, y):
     ratio = mana / 100
     pygame.draw.rect(screen, WHITE, (x - 2, y - 2, 104, 14) )
@@ -163,9 +164,9 @@ def character_selection_screen():
     while selected_character is None:
         warrior_button_rect = pygame.Rect(50, 100, 200, 200)
         screen.blit(scaled_character1_img, warrior_button_rect)
-        wizard_button_rect = pygame.Rect(580, 50, 200, 200)
+        wizard_button_rect = pygame.Rect(600, 50, 200, 200)
         screen.blit(scaled_character2_img, wizard_button_rect)
-        martialhero_button_rect = pygame.Rect(580, 350, 200, 200)
+        martialhero_button_rect = pygame.Rect(600, 350, 200, 200)
         screen.blit(scaled_character3_img, martialhero_button_rect)
         knight_button_rect = pygame.Rect(50, 350, 200, 200)
         screen.blit(scaled_character4_img, knight_button_rect)
@@ -193,8 +194,8 @@ def character_selection_screen():
        
         character_data = {
             1: ("Warrior", 120, 270),
-            2: ("Wizard", 620, 270),
-            3: ("Hero", 620, 520),
+            2: ("Wizard", 650, 270),
+            3: ("Hero", 650, 520),
             4: ("Knight", 120, 520)
         }
 
