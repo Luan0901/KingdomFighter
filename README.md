@@ -55,10 +55,10 @@ Before running the game, ensure that the following are installed on your system:
 
 ## Screen shot
 <div style="display:flex; gap: 10px;">
-  <img src="assets/images/readme/screenshot3.png" width="200" />
-  <img src="assets/images/readme/screenshot1.png" width="200" />
-  <img src="assets/images/readme/screenshot2.png" width="200" />
-  <img src="assets/images/readme/screenshot4.png" width="200" />
+  <img src="assets/images/readme/screenshot3.png" width="250" />
+  <img src="assets/images/readme/screenshot1.png" width="250" />
+  <img src="assets/images/readme/screenshot2.png" width="250" />
+  <img src="assets/images/readme/screenshot4.png" width="250" />
 </div>
 
 
